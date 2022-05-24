@@ -2,6 +2,43 @@ body {
     background-color: #DBDFFD;
 }
 
-h1 {
-color : #242F9B;
+.searchBar {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 500px;
+    background-color: #646FD4;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color : white;
+    box-shadow: 0.5rem 0.28rem 0.5rem #9BA3EB;
+}
+
+.searchBar form{
+    width: 100%;
+}
+
+.searchBar input{
+    font-size: 1.5rem;
+    margin : 0 0.5rem 0 0.5rem;
+    width :100%;
+    height: 2rem;
+    border : none;
+    outline: none;
+    background-color: #646FD4;
+    color : white;
+}
+
+.searchBar ::placeholder{
+    color : #9BA3EB;
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color : white;
+    font-size: 1.2rem;
 }
