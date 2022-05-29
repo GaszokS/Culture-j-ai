@@ -35,10 +35,22 @@ app.get("/login", function (req, res) {
     res.render("login.html");
 });
 
-app.post("/login", function (req, res) {
+app.post("/login", async function (req, res) {
     const sha256Hasher = crypto.createHmac("sha256", secret);
     const hash = sha256Hasher.update(req.body.password).digest("hex");
-    res.render("login.html");
+
+    var userInfo = await db.getFromCollection("UserInfo", "users", { username: req.body.username });
+
+    if (userInfo != null) {
+        if (userInfo.password == hash) {
+            console.log("Login Successful");
+            res.render("login.html");
+        } else {
+            res.render("login.html", { error: "Wrong password" });
+        }
+    } else {
+        res.render("login.html", { error: "User not found" });
+    }
 });
 
 app.get("/register", function (req, res) {
@@ -57,7 +69,7 @@ app.post("/register", async function (req, res) {
     } else if (mailExist) {
         res.render("register.html", { error: "Email have already been used" });
     } else {
-        db.addToDB("UserInfo", "users", { username: req.body.username, password: hash, email: req.body.email });
+        db.addToDB("UserInfo", "users", { username: req.body.username, password: hash, email: req.body.email, poidsEnHabricot : req.body.poidsEnHabricot });
         res.render("register.html");
     }
 });

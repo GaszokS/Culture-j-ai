@@ -32,11 +32,8 @@ function addCollection(dbToChange, collection) {
 }
 
 async function isInCollection(dbToUse, collection, data) {
-    const client = await MongoClient.connect(url);
-    var db = client.db(dbToUse);
-    var res = await db.collection(collection).findOne(data);
-    client.close();
-    
+    var res = await getFromCollection(dbToUse, collection, data);
+
     if (res != null) {
         return true;
     } else {
@@ -44,4 +41,12 @@ async function isInCollection(dbToUse, collection, data) {
     }
 }
 
-module.exports = {connect, addToDB, addCollection, isInCollection};
+async function getFromCollection(dbToUse, collection, data) {
+    const client = await MongoClient.connect(url);
+    var db = client.db(dbToUse);
+    var res = await db.collection(collection).findOne(data);
+    client.close();
+    return res;
+}
+
+module.exports = {connect, addToDB, addCollection, isInCollection, getFromCollection};
