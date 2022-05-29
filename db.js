@@ -1,11 +1,13 @@
+const res = require('express/lib/response');
+
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://127.0.0.1:27017/";
 
-function connect(dbToUse, Collection, callback) {
-    MongoClient.connect(url, function(err, db) {
+async function connect(dbToUse, Collection, callback) {
+    MongoClient.connect(url, async function(err, db) {
         if (err) throw err;
         var dbo = db.db(dbToUse);
-        callback(dbo, db, Collection);
+        return callback(dbo, db, Collection);
       });
 }
 
@@ -29,4 +31,17 @@ function addCollection(dbToChange, collection) {
     });
 }
 
-module.exports = {connect, addToDB, addCollection};
+async function isInCollection(dbToUse, collection, data) {
+    const client = await MongoClient.connect(url);
+    var db = client.db(dbToUse);
+    var res = await db.collection(collection).findOne(data);
+    client.close();
+    
+    if (res != null) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+module.exports = {connect, addToDB, addCollection, isInCollection};
