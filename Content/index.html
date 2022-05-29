@@ -3,20 +3,26 @@
 <head>
     <title>Culture j'ai</title>
     <link rel="stylesheet" href="/styles.css">
+    <script src="indexClient.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="TopBar">    
+    <div class="topbar">    
         <div class="searchBar">
-            <button class="btn">
-                <div class="fa fa-search"></div>
-            </button>
-            <form action="/" method="post">
+            <form action="/" method="post" id="searchForm" class="searchBarForm">
+                <button class="btnSearch">
+                    <div class="fa fa-search"></div>
+                </button>
                 <input name= "search" type="text" placeholder="Search">
             </form>
 
-            <button class="btn">
+            <button class="btnCross" onclick = "emptySearchBar()">
                 <div class="fa fa-times"></div>
+            </button>
+        </div>
+        <div class="user">
+            <button class="btnLog" name="foo" onclick="window.location.href='login'";>
+                <div class="fa fa-user"></div>
             </button>
         </div>
     </div>

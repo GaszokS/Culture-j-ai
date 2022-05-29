@@ -1,7 +1,10 @@
 body {
     background-color: #DBDFFD;
 }
-
+.topbar{
+    display: flex;
+    align-items: center;
+}
 .searchBar {
     font-size: 1.5rem;
     display: flex;
@@ -15,8 +18,12 @@ body {
     color : white;
     box-shadow: 0.5rem 0.28rem 0.5rem #9BA3EB;
 }
-
-.searchBar form{
+.searchBarForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.searchBarForm  input{
     width: 100%;
 }
 
@@ -35,10 +42,23 @@ body {
     color : #9BA3EB;
 }
 
-.btn {
+.searchBar button {
     cursor: pointer;
     border: none;
     background-color: transparent;
     color : white;
     font-size: 1.2rem;
+}
+
+.user{
+    font-size: 1.2rem;
+    margin : 0 1rem 0 0.5rem;
+    height: 2rem;
+}
+.user button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color : 646FD4;
+    font-size: 1.3rem;
 }
