@@ -1,5 +1,7 @@
 // Import
 const express = require("express");
+const sessions = require("express-session");
+const cookieParser = require("cookie-parser");
 const consolidate = require('consolidate');
 const bodyParser = require('body-parser')
 const crypto = require('crypto');
@@ -17,6 +19,15 @@ app.engine('html', consolidate.hogan)
 app.set('views', 'Content');
 app.listen(3000);
 
+//session config
+app.use(sessions({
+    secret : secret,
+    saveUninitialized : true,
+    cookie : {maxAge : 1000 * 5},
+    resave : false
+}));
+
+app.use(cookieParser());
 
 // Routes
 app.get("/", function (req, res) {
@@ -44,7 +55,9 @@ app.post("/login", async function (req, res) {
     if (userInfo != null) {
         if (userInfo.password == hash) {
             console.log("Login Successful");
-            res.render("login.html");
+            req.session.user = userInfo;
+            console.log(req.session.user);
+            res.redirect("/");
         } else {
             res.render("login.html", { error: "Wrong password" });
         }
@@ -70,6 +83,8 @@ app.post("/register", async function (req, res) {
         res.render("register.html", { error: "Email have already been used" });
     } else {
         db.addToDB("UserInfo", "users", { username: req.body.username, password: hash, email: req.body.email, poidsEnHabricot : req.body.poidsEnHabricot });
-        res.render("register.html");
+        req.session.user = await db.getFromCollection("UserInfo", "users", { username: req.body.username });
+        console.log(req.session.user);
+        res.redirect("/");
     }
 });
