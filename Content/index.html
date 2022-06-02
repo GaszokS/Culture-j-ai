@@ -21,10 +21,19 @@
             </button>
         </div>
         <div class="user">
-            <button class="btnLog" name="foo" onclick="window.location.href='login'";>
-                <div class="fa fa-user"></div>
+            <button id="Login" name="foo" onclick="window.location.href='login'";>
+            <p>Se connecter</p>
+            </button>
+            <button id="Register" name="foo" onclick="window.location.href='register'";>
+            <p>Créer un compte</p>
+            </button>
+            <button id="Logout" name="foo" onclick="window.location.href='logout'";>
+            <p>Se déconnecter</p>
             </button>
         </div>
     </div>
 </body>
+<script>
+register("{{user}}");
+</script>
 </html>
