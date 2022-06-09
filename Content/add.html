@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <form method="POST" action="/add">
+        <label type="text">Question</label> <br>
+        <textarea rows="1" cols="60" name="question" placeholder="Question" maxlength="60"></textarea> <br>
+        <label type="text">Reponse</label> <br>
+        <textarea rows="10" cols="60" name="reponse" placeholder="Reponse"></textarea><br>
+        <input type="submit" name="add" value="add">
+    </form>
+
+    <p>{{error}}</p>
+</body>
+
+</html>

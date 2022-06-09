@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Mon compte :</h1>
+    <p><%= user.username%></p>
+    <p><%= user.email%></p>
+    <p><%= user.poidsEnHabricot%></p>
+
+    <h1>Mes questions :</h1>
+
+    <% for (var i = 0; i < cards.length; i++) { %>
+        <iframe src="/card/<%= cards[i]._id%>" title="Iframe Card"></iframe> <br>
+    <% } %>
+    <!-- TODO:  Ajouter un bouton pour supprimer la question -->
+
+</body>
+
+</html>
